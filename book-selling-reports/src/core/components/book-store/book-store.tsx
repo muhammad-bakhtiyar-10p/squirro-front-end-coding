@@ -1,11 +1,15 @@
 import BookStoreTableComponent from './book-store-table';
 import './book-store.scss';
+import { IRatings, IStore } from './interfaces';
 
-function BookStoreComponent({ stores }: any) {
-    console.log({ props: stores });
+interface IProps{
+    stores: Array<IStore>
+}
 
-    const getRatingStars = (store: any) => {
-        const stars: any = [];
+function BookStoreComponent({ stores }: IProps) {
+
+    const getRatingStars = (store: IStore) => {
+        const stars: Array<IRatings> = [];
         const ratings = store?.attributes?.rating || 0;
         let countDown = 5;
         for(let i = 1; i <= ratings; i++){
@@ -20,61 +24,51 @@ function BookStoreComponent({ stores }: any) {
                 className: 'unrated-star',
             });
         }
-        console.log({stars, countDown, ratings})
         return stars;
     }
     return (
-        <div>
+        <div className='container'>
 
-            {stores.map((store: any, index: number) => {
+            {stores.map((store: IStore, index: number) => {
 
-                return <div key={index} className="container">
+                return <div key={index} className="item-wrapper">
                     <div className='left-section'>
-                        <img src={store?.attributes?.storeImage} className="profile-image" alt="..." />
-                        
-
-                        <div className='meta-data-content'>
-                            <a href={store?.attributes?.website} target="_blank">{store?.attributes?.website}</a>
-                            <br/>
-                            <div>{store?.attributes?.establishmentDate}</div>
+                        <img data-testid="profile-image" src={store?.attributes?.storeImage} className="profile-image" alt="..." />
+                        <div>
+                            <span className='date-container'>{store?.attributes?.establishmentDate}</span>
+                             - 
+                            <a href={store?.attributes?.website} className='anchor-link' target="_blank">{store?.attributes?.website}</a>
                         </div>
+                        
                     </div>
                     
                     <div className="center-section">
-                        <h2 className="card-title">{store?.attributes?.name}</h2>
+                        <div className='card-wrapper'>
+                            <h2 data-testid="store-name" className="card-title">{store?.attributes?.name}</h2>
+                            <div className='right-section'>
+                            
+                                <div className="rating" data-testid="ratings">
+                                {
+                                    getRatingStars(store).map((star: IRatings, index: number) => {
+                                        return <span key={`${index}-stars`} className={star.className}>&#9733;</span>
+                                    })
+                                }
+                                </div>
+
+                            </div>
+                        </div>
                         <BookStoreTableComponent
                             books={store.relationships.books}/>
-                    </div>
-                    <div className='right-section'>
-                        {store?.relationships?.countries?.attributes?.code && <img src={`https://flagsapi.com/${store?.relationships?.countries?.attributes?.code}/flat/64.png`}/>}
-                    
-                        <div className="rating">
-                        {
-                            getRatingStars(store).map((star: any) => {
-                                return <span className={star.className}>&#9733;</span>
-                                    // <span className="star">&#9733;</span>
-                                    // <span className="star">&#9733;</span>
-                                    // <span className="star">&#9733;</span>
-                                    // <span className="star">&#9733;</span>
-                            })
-                        }
+                        <div className='card-flag'>
+                        {store?.relationships?.countries?.attributes?.code && <img src={`https://flagsapi.com/${store?.relationships?.countries?.attributes?.code}/flat/64.png`} alt="no flag found"/>}
                         </div>
-
                     </div>
+                    
                     
                 </div>
 
 
             })}
-
-            {/* <div className="card" style={{ width: '18rem;' }}>
-                <img src="..." className="card-img-top" alt="..." />
-                <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" className="btn btn-primary">Go somewhere</a>
-                </div>
-            </div> */}
         </div>
     );
 }

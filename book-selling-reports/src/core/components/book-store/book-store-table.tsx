@@ -1,30 +1,42 @@
 import './book-store-table.scss';
+import { IBook } from './interfaces';
 
-function BookStoreTableComponent({ books }: any){
+interface IProps{
+    books: Array<IBook>
+}
+
+function BookStoreTableComponent({ books }: IProps){
 
     return (
         <>
-            
             <table className="table-container">
-                <tbody>
-                    <tr>
-                        <th colSpan={2}>
-                            <h3>Book store name</h3>
-                        </th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th colSpan={2}>
+                                <h3>Best-selling books</h3>
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
                     {
-                        books.length ? books.map((book: any, index: number) => {
+                        books.length ? books.map((book: IBook, index: number) => {
                             return  <tr key={index}>
-                                        <td>
-                                            <h3>{book?.attributes?.name}</h3>
+                                        <td data-testid={`book-name-${index}`}>
+                                            <h4>{book?.attributes?.name}</h4>
                                         </td>
                                         <td>
-                                            <h3>{book?.relationships?.author?.data?.attributes?.fullName}</h3>
+                                            <h4 data-testid={`author-name-${index}`}>{book?.relationships?.author?.data?.attributes?.fullName}</h4>
                                         </td>
                                     </tr>
-                        }) : <th colSpan={2}>
-                            No data available
-                        </th>
+                        }) : <tr >
+                            <td>
+                                <h4>No data available</h4>
+                            </td>
+                            <td>
+                                
+                            </td>
+                        </tr>
                     }
                     
                 </tbody>

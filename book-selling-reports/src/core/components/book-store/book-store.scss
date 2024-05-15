@@ -1,66 +1,118 @@
 .container{
-    background-color: rgb(230, 225, 225);
+    margin: 0px auto;
+    max-width: 1600px;
+    width: 100%;
+    padding: 30px;
+    box-sizing: border-box;
+    @media (max-width: 767px) {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+.item-wrapper{
     display: flex;
-    margin-bottom: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 10px;
-    border: 1px solid wheat;
+    border: 1px solid #f5deb3;
     border-radius: 10px;
-    padding: 10px;
-    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin-bottom: 20px;
+
+    @media (max-width: 767px) {
+        flex-direction: column;
+        gap: 12px;
+        margin-left: 20px;
+        margin-right: 20px;
+        padding: 0;
+    }
     
     .profile-image{
         width: 200px;
         height: 200px;
-        border-radius: 10px;
-        margin-bottom: 10px;
-        margin-top: 10px;
-
-        // margin: 20px;
-    }
-
-    .left-section{
-        flex: 1;
-        padding-left: 10px;
-        padding-top: 10px;
-        background-color: white;
-        text-align: center;
-        justify-content: left;
-        margin: 10px;
-        border-radius: 10px;
-        .meta-data-content{
-            text-align: left;
+        object-fit: cover;
+        border-radius: 150px;
+        margin-bottom: 20px;
+        @media(min-width: 1024px){
+            width: 300px;
+            height: 300px;
         }
     }
 
-    .center-section{
+    .date-container{
+        margin-right: 5px;
+        font-size: 20px;
+    }
+
+    .anchor-link{
+        margin-left: 5px;
+    }
+
+    .left-section{
         flex: 2;
-        align-self: flex-end;
+        padding: 10px;
+        justify-content: left;
+        border-radius: 10px;
+        text-align: center;
+        .meta-data-content{
+            text-align: left;
+            margin-left: 10px;
+            align-self: center;
+            text-align: center;
+            justify-content: left;
+        }
+    }
+
+    
+
+    .center-section{
+        flex: 5;
+        align-self: center;
         margin-bottom: 10px;
-        margin-left: 10px;
+        margin-left: 25px;
+        margin-right: 25px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        .card-wrapper{
+            display: flex; 
+            align-items: center;
+            @media(max-width: 767px){
+                flex-direction: column;
+            }
+        }
+
+        
+        .card-title{
+            @media (max-width: 767px) {
+                margin-bottom: 0;
+                    
+            }
+        }
+
+        .card-flag{
+            text-align: right;
+        }
+
     }
 
     .right-section{
         flex: 1;
         text-align: right;
-        padding-right: 10px;
         padding-top: 5px;
     }
 
     .rating {
-        font-size: 35px; /* Adjust size as needed */
+        font-size: 35px;
+        text-align: right;
     }
     
     .star{
-        border: 1px solid black;
+        border: 1px solid #000000;
     }
 
     .gold-star {
-        color: gold; /* Color of the star */
+        color: #ffd700;
     }
 
     .unrated-star{
-        color: white;
+        color: #ddd9d9;
     }
 }

@@ -1,4 +1,5 @@
 import { Http } from "../../../shared/services";
+import { IApiResponse } from "../../components/book-store/interfaces";
 
 class BookStoreService {
 
@@ -7,11 +8,10 @@ class BookStoreService {
      * @desc will fetch the list of stores
      * @return {Promise}
      */
-    getStores = () => {
+    getStores = (): Promise<IApiResponse> => {
         return new Promise((resolve, reject) => {
             Http.REQUEST.get(`stores`)
                 .then((_successLog: any) => {
-                    console.log({_successLog: JSON.parse(JSON.stringify(_successLog.data.included))})
                     resolve({
                         stores: _successLog.data?.data,
                         books: _successLog.data.included.filter((book: any) => book.type === 'books'),
