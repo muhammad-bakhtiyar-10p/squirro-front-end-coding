@@ -1,0 +1,1 @@
+export { default as BookStoreComponent} from './book-store/book-store';

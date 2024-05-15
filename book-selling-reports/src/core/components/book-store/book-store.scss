@@ -1,0 +1,66 @@
+.container{
+    background-color: rgb(230, 225, 225);
+    display: flex;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    border: 1px solid wheat;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+    
+    .profile-image{
+        width: 200px;
+        height: 200px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+
+        // margin: 20px;
+    }
+
+    .left-section{
+        flex: 1;
+        padding-left: 10px;
+        padding-top: 10px;
+        background-color: white;
+        text-align: center;
+        justify-content: left;
+        margin: 10px;
+        border-radius: 10px;
+        .meta-data-content{
+            text-align: left;
+        }
+    }
+
+    .center-section{
+        flex: 2;
+        align-self: flex-end;
+        margin-bottom: 10px;
+        margin-left: 10px;
+    }
+
+    .right-section{
+        flex: 1;
+        text-align: right;
+        padding-right: 10px;
+        padding-top: 5px;
+    }
+
+    .rating {
+        font-size: 35px; /* Adjust size as needed */
+    }
+    
+    .star{
+        border: 1px solid black;
+    }
+
+    .gold-star {
+        color: gold; /* Color of the star */
+    }
+
+    .unrated-star{
+        color: white;
+    }
+}
