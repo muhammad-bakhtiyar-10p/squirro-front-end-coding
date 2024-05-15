@@ -31,40 +31,45 @@ function BookStoreComponent({ stores }: IProps) {
 
             {stores.map((store: IStore, index: number) => {
 
-                return <div key={index} className="item-wrapper">
-                    <div className='left-section'>
-                        <img data-testid="profile-image" src={store?.attributes?.storeImage} className="profile-image" alt="..." />
-                        <div>
-                            <span className='date-container'>{store?.attributes?.establishmentDate}</span>
-                             - 
-                            <a href={store?.attributes?.website} className='anchor-link' target="_blank">{store?.attributes?.website}</a>
+                return <div key={index} className='body-item-wrapper'>
+                    <div className="item-wrapper">
+                        <div className='left-section'>
+                            <img data-testid="profile-image" src={store?.attributes?.storeImage} className="profile-image" alt="..." />
+                            
+                            
                         </div>
                         
-                    </div>
-                    
-                    <div className="center-section">
-                        <div className='card-wrapper'>
-                            <h2 data-testid="store-name" className="card-title">{store?.attributes?.name}</h2>
-                            <div className='right-section'>
-                            
-                                <div className="rating" data-testid="ratings">
-                                {
-                                    getRatingStars(store).map((star: IRatings, index: number) => {
-                                        return <span key={`${index}-stars`} className={star.className}>&#9733;</span>
-                                    })
-                                }
-                                </div>
+                        <div className="center-section">
+                            <div className='card-wrapper'>
+                                <h2 data-testid="store-name" className="card-title">{store?.attributes?.name}</h2>
+                                <div className='right-section'>
+                                
+                                    <div className="rating" data-testid="ratings">
+                                    {
+                                        getRatingStars(store).map((star: IRatings, index: number) => {
+                                            return <span key={`${index}-stars`} className={star.className}>&#9733;</span>
+                                        })
+                                    }
+                                    </div>
 
+                                </div>
                             </div>
-                        </div>
-                        <BookStoreTableComponent
-                            books={store.relationships.books}/>
-                        <div className='card-flag'>
-                        {store?.relationships?.countries?.attributes?.code && <img src={`https://flagsapi.com/${store?.relationships?.countries?.attributes?.code}/flat/64.png`} alt="no flag found"/>}
+                            <BookStoreTableComponent
+                                books={store.relationships.books}/>
+                            
                         </div>
                     </div>
                     
-                    
+                    <div className='bottom-card-container'>
+                                <div className='bottom-card-info'>
+                                    <span className='date-container'>{store?.attributes?.establishmentDate}</span>
+                                    - 
+                                    <a href={store?.attributes?.website} className='anchor-link' target="_blank">{store?.attributes?.website}</a>
+                                </div>
+                                <div className='card-flag'>
+                                    {store?.relationships?.countries?.attributes?.code && <img src={`https://flagsapi.com/${store?.relationships?.countries?.attributes?.code}/flat/64.png`} alt="no flag found"/>}
+                                </div>
+                    </div>
                 </div>
 
 
