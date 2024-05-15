@@ -2,13 +2,12 @@
     border-collapse: collapse;
     width: 100%;
     background-color: #ffffff;
-    // hash
 
     th,td {
         border: 1px solid #bdbdba;
         padding: 2px;
+        width: 25%;
         text-align: left;
-        // width: 25%;
         padding-left: 10px;
     }
     h3{
