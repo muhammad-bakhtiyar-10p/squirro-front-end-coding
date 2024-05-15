@@ -1,55 +1,98 @@
 .container{
-    background-color: rgb(230, 225, 225);
     display: flex;
-    margin-bottom: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 10px;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    padding: 30px;
+    box-sizing: border-box;
+    @media (max-width: 767px) {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+.item-wrapper{
+    display: flex;
     border: 1px solid wheat;
     border-radius: 10px;
-    padding: 10px;
-    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+
+    @media (max-width: 767px) {
+        flex-direction: column;
+        gap: 12px;
+        margin-left: 20px;
+        margin-right: 20px;
+        padding: 0;
+    }
     
     .profile-image{
         width: 200px;
         height: 200px;
-        border-radius: 10px;
+        object-fit: cover;
+        border-radius: 150px;
         margin-bottom: 10px;
-        margin-top: 10px;
-
-        // margin: 20px;
-    }
-
-    .left-section{
-        flex: 1;
-        padding-left: 10px;
-        padding-top: 10px;
-        background-color: white;
-        text-align: center;
-        justify-content: left;
-        margin: 10px;
-        border-radius: 10px;
-        .meta-data-content{
-            text-align: left;
+        @media(min-width: 1024px){
+            width: 300px;
+            height: 300px;
         }
     }
 
-    .center-section{
+    .left-section{
         flex: 2;
-        align-self: flex-end;
+        padding: 10px;
+        justify-content: left;
+        border-radius: 10px;
+        text-align: center;
+        .meta-data-content{
+            text-align: left;
+            margin-left: 10px;
+            align-self: center;
+            text-align: center;
+            justify-content: left;
+        }
+    }
+
+    
+
+    .center-section{
+        flex: 5;
+        align-self: center;
         margin-bottom: 10px;
-        margin-left: 10px;
+        margin-left: 25px;
+        margin-right: 25px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        .card-wrapper{
+            display: flex; 
+            align-items: center;
+            @media(max-width: 767px){
+                flex-direction: column;
+            }
+        }
+
+        
+        .card-title{
+            @media (max-width: 767px) {
+                margin-bottom: 0;
+                    
+            }
+        }
+
+        .card-flag{
+            text-align: right;
+        }
+
     }
 
     .right-section{
         flex: 1;
         text-align: right;
-        padding-right: 10px;
         padding-top: 5px;
     }
 
     .rating {
-        font-size: 35px; /* Adjust size as needed */
+        font-size: 35px;
+        text-align: right;
     }
     
     .star{
@@ -57,10 +100,10 @@
     }
 
     .gold-star {
-        color: gold; /* Color of the star */
+        color: gold;
     }
 
     .unrated-star{
-        color: white;
+        color: rgb(221, 217, 217);
     }
 }
